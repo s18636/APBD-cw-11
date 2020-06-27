@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Wyklad10Sample.Models
+namespace APBD_cw_11.Models
 {
     public partial class Doctor
     {

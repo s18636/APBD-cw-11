@@ -1,10 +1,7 @@
 ﻿using APBD_cw_11.DTOs.Requests;
+using APBD_cw_11.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Wyklad10Sample.Models;
 
 namespace APBD_cw_11.Services
 {

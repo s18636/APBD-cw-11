@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Wyklad10Sample.Models;
+using APBD_cw_11.Models;
 
 namespace APBD_cw_11.Services
 {
@@ -12,28 +12,48 @@ namespace APBD_cw_11.Services
     {
 
         private readonly DoctorsDbContext _context;
-        public SqlServerDbServices(DoctorsDbContext context)
+        SqlServerDbServices(DoctorsDbContext context)
         {
             _context = context;
         }
-        public Task<IActionResult> AddDoctor(Doctor doctor)
+        public async Task<IActionResult> AddDoctor(Doctor doctor)
         {
-            throw new NotImplementedException();
+            await _context.Doctor.AddAsync(doctor);
+            await _context.SaveChangesAsync();
+
+            return new OkResult();
         }
 
-        public Task<IActionResult> DeleteDoctor(int id)
+
+        public async Task<IActionResult> DeleteDoctor(int id)
         {
-            throw new NotImplementedException();
+            var doctor = _context.Doctor.FirstOrDefault(s => s.IdDoctor == id);
+            if (doctor == null) return new BadRequestResult();
+            _context.Attach(doctor);
+            _context.Remove(doctor);
+            await _context.SaveChangesAsync();
+            return new OkObjectResult(doctor);
         }
 
-        public Task<IActionResult> EditDoctor(EditDoctorRequest request)
+        public async Task<IActionResult> EditDoctor(EditDoctorRequest request)
         {
-            throw new NotImplementedException();
+            var doctor = _context.Doctor.FirstOrDefault(n => n.IdDoctor == request.IdDoctor);
+            if (doctor == null)
+            {
+                return new BadRequestResult();
+            }
+
+            doctor.FirstName = request.FirstName;
+            doctor.LastName = request.LastName;
+            doctor.Email = request.Email;
+
+            await _context.SaveChangesAsync();
+            return new OkObjectResult(doctor);
         }
 
-        public Task<IActionResult> GetDoctors()
+        public async Task<IActionResult> GetDoctors()
         {
-            throw new NotImplementedException();
+            return new OkObjectResult(_context.Doctor.ToList());
         }
     }
 }

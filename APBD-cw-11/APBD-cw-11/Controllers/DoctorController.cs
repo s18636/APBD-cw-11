@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using APBD_cw_11.DTOs.Requests;
+using APBD_cw_11.Models;
 using APBD_cw_11.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Wyklad10Sample.Models;
 
 namespace APBD_cw_11.Controllers
 {

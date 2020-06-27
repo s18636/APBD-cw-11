@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Wyklad10Sample.Models
+namespace APBD_cw_11.Models
 {
     public class DoctorsDbContext : DbContext
     {
-        public DoctorsDbContext()
-        {
-        }
+
+        public DbSet<Doctor> Doctor { get; set; }
+        public DbSet<Medicament> Medicament { get; set; }
+        public DbSet<Patient> Patient { get; set; }
+        public DbSet<Prescription> Prescription { get; set; }
+        public DbSet<PrescriptionMedicament> PrescriptionMedicament { get; set; }
 
         public DoctorsDbContext(DbContextOptions<DoctorsDbContext> options)
             : base(options)
@@ -24,14 +27,7 @@ namespace Wyklad10Sample.Models
             }
         }
 
-        public virtual DbSet<Doctor> Doctor { get; set; }
-        public virtual DbSet<Medicament> Medicament { get; set; }
-        public virtual DbSet<Patient> Patient { get; set; }
-        public virtual DbSet<Prescription> Prescription { get; set; }
-        public virtual DbSet<PrescriptionMedicament> PrescriptionMedicament { get; set; }
-
-
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             List<Doctor> doctors = new List<Doctor>();
